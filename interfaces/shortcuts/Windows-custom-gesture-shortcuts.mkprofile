@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "profileName": "Windows-custom-gesture-shortcuts",
+  "profileType": "radial",
+  "customGestures": {
+    "sources": { "switchBox": 10 },
+    "types": { "tap": 1 },
+    "subtypes": {
+      "button1": 1,
+      "button2": 2,
+      "button3": 3,
+      "button4": 4,
+      "button5": 5,
+      "button6": 6
+    }
+  },
+  "events": {
+    "button1_tap": { "source": "switchBox", "gestureType": "tap", "gestureSubtype": "button1" },
+    "button2_tap": { "source": "switchBox", "gestureType": "tap", "gestureSubtype": "button2" },
+    "button3_tap": { "source": "switchBox", "gestureType": "tap", "gestureSubtype": "button3" },
+    "button4_tap": { "source": "switchBox", "gestureType": "tap", "gestureSubtype": "button4" },
+    "button5_tap": { "source": "switchBox", "gestureType": "tap", "gestureSubtype": "button5" },
+    "button6_tap": { "source": "switchBox", "gestureType": "tap", "gestureSubtype": "button6" }
+  },
+  "states": {
+    "shortcuts": {
+      "repr": "(control)",
+      "transitions": [
+        {
+          "triggerEvents": ["button1_tap"],
+          "nextStateIndex": "shortcuts",
+          "label": "Copy",
+          "mouseKeyboardActions": [
+            { "actionType": ".atKeystrokes", "keycodes": [".keyC"], "modifierKeys": [".keyModLctrl"] }
+          ]
+        },
+        {
+          "triggerEvents": ["button2_tap"],
+          "nextStateIndex": "shortcuts",
+          "label": "Paste",
+          "mouseKeyboardActions": [
+            { "actionType": ".atKeystrokes", "keycodes": [".keyV"], "modifierKeys": [".keyModLctrl"] }
+          ]
+        },
+        {
+          "triggerEvents": ["button3_tap"],
+          "nextStateIndex": "shortcuts",
+          "label": "Cut",
+          "mouseKeyboardActions": [
+            { "actionType": ".atKeystrokes", "keycodes": [".keyX"], "modifierKeys": [".keyModLctrl"] }
+          ]
+        },
+        {
+          "triggerEvents": ["button4_tap"],
+          "nextStateIndex": "shortcuts",
+          "label": "Undo",
+          "mouseKeyboardActions": [
+            { "actionType": ".atKeystrokes", "keycodes": [".keyZ"], "modifierKeys": [".keyModLctrl"] }
+          ]
+        },
+        {
+          "triggerEvents": ["button5_tap"],
+          "nextStateIndex": "shortcuts",
+          "label": "Redo",
+          "mouseKeyboardActions": [
+            { "actionType": ".atKeystrokes", "keycodes": [".keyY"], "modifierKeys": [".keyModLctrl"] }
+          ]
+        },
+        {
+          "triggerEvents": ["button6_tap"],
+          "nextStateIndex": "shortcuts",
+          "label": "Select all",
+          "mouseKeyboardActions": [
+            { "actionType": ".atKeystrokes", "keycodes": [".keyA"], "modifierKeys": [".keyModLctrl"] }
+          ]
+        }
+      ]
+    }
+  },
+  "headControlModes": [],
+  "tongueControlModes": ["shortcuts"]
+}

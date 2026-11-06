@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mouthpad-gestural-interface"
+version = "0.1.0"
+description = "Send gestures and raw sensor overrides directly to a MouthPad device over USB CDC."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+dependencies = [
+    "protobuf>=4",
+    "pyserial>=3.5",
+]
+
+[project.optional-dependencies]
+# Regenerating the bindings from src/proto (see the Makefile).
+dev = ["grpcio-tools>=1.48"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["mouthpad_gestural_interface", "mouthpad_gestural_interface._pb"]

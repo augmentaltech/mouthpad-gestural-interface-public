@@ -1,0 +1,49 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+// Copyright 2026 Augmental Technologies, Inc.. See LICENSE and NOTICE.
+
+syntax = "proto3";
+package mouthware_message;
+
+import "Gestures.proto";
+
+// Gesture-injection payload types. A host builds a PlayGestureVector of one or
+// more GestureFrames; the device replays them, overriding its live sensor
+// pipeline frame-by-frame with whichever fields are set. Field numbers are
+// wire-compatible with the device's canonical DeveloperTestIO.proto.
+
+message Quaternion {
+    float w = 1;
+    float x = 2;
+    float y = 3;
+    float z = 4;
+}
+
+message TouchPoint {
+    // Raw capacitive-grid frame (1024 wide x 768 tall). Raw x grows toward the
+    // user's left (West), raw y toward the rostrum (North).
+    uint32 x = 1;
+    uint32 y = 2;
+}
+
+message GestureFrame {
+    // Discrete gestures to inject this cycle (e.g. a barometer press, an IMU
+    // tap). May be empty when only the analog overrides below are used.
+    repeated FSMGesture gestures = 1;
+    // When set, overrides the IMU-fused orientation delta for this cycle.
+    optional Quaternion q_delta = 2;
+    // When set, overrides the measured barometer pressure for this cycle.
+    optional float pressure = 3;
+    // When set, overrides the resolved tongue touch position for this cycle.
+    optional TouchPoint touch_point = 4;
+}
+
+message PlayGestureVector {
+    repeated GestureFrame frames = 1;
+}
+
+message DeveloperTestIOCommand {
+    // Field 1 of the device's DeveloperTestIOCommand.body oneof; a singular
+    // field here is wire-identical. The device ignores the other members of
+    // that oneof, none of which are needed to inject gestures.
+    PlayGestureVector play_gesture_vector = 1;
+}

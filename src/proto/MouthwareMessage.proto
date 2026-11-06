@@ -1,0 +1,20 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+// Copyright 2026 Augmental Technologies, Inc.. See LICENSE and NOTICE.
+
+syntax = "proto3";
+package mouthware_message;
+
+import "GestureInject.proto";
+import "DeviceInfo.proto";
+
+// Minimal wire-compatible envelope. The device parses every inbound frame with
+// its full MouthwareMessage definition, and each field number below lands in
+// its message_body oneof as the matching variant. Only the fields a host needs
+// to identify a device and inject gestures appear here.
+message MouthwareMessage {
+    // Ask the device to report a config block. Only CONFIG_TYPE_SYSTEM is
+    // useful here: its reply carries the hardware version, which is how a host
+    // tells one Nordic CDC device from another before injecting into it.
+    ConfigRead config_read = 4;
+    DeveloperTestIOCommand developer_test_io_command = 28;
+}

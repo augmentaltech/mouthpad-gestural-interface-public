@@ -1,0 +1,27 @@
+Required Notice: Copyright 2026 Augmental Technologies, Inc. (commercial licenses: contact@augmental.tech)
+
+Additional permissions
+
+The software in this repository is licensed under the PolyForm Noncommercial
+License 1.0.0 (see LICENSE). Augmental Technologies, Inc. ("Augmental") also
+grants the following permissions, which add to that license and do not limit
+it.
+
+1. Use with MouthPad hardware. You may use, copy, change and distribute the
+   software for any purpose, commercial or not, when it is used with MouthPad
+   hardware. "MouthPad hardware" means devices made by Augmental, or under
+   license from it, and sold or supplied by Augmental, including the MouthPad
+   and the MouthPad hardware key. This permission does not cover the MouthPad app
+   or any other software, and does not cover using the software with other
+   devices.
+
+2. Your profiles. A gesture profile (.mkprofile file) that you write is yours.
+   You may use, share, sell or license it for any purpose, including when it is
+   based on the example profiles or the profile specification in this
+   repository. This permission covers profiles only. It does not cover the
+   profile specification itself, or a profile format, engine or tool based on
+   it.
+
+For any other commercial use, including a gesture-profile format, engine or tool
+based on this software, the profile specification or the message definitions,
+email contact@augmental.tech for a commercial license.

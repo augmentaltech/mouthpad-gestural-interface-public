@@ -1,0 +1,177 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+// Copyright 2026 Augmental Technologies, Inc.. See LICENSE and NOTICE.
+
+syntax = "proto3";
+package mouthware_message;
+
+// Public gesture vocabulary for the MouthPad gestural interface.
+//
+// Field and enum numbers here are wire-compatible with the device's canonical
+// firmware proto (mouthpad-proto/StateMachine.proto). Frames built from these
+// definitions are parsed directly by the device — there is no translation
+// layer. This file is a minimal, self-contained subset: only the gesture types
+// an injecting host needs, with no dependency on nanopb or the FSM internals.
+
+enum GestureSource {
+    GS_UNSPECIFIED = 0;
+    GS_TOUCHPAD = 1;
+    GS_BAROMETER = 2;
+    GS_IMU = 3;
+    GS_MOUSE_OPTIONS = 4;
+    GS_GPIO = 5;
+}
+
+enum TouchpadLocation {
+    TL_UNSPECIFIED = 0;
+    TL_DEADZONE = 1;
+    TL_NORTH = 2;
+    TL_NORTHEAST = 3;
+    TL_EAST = 4;
+    TL_SOUTHEAST = 5;
+    TL_SOUTH = 6;
+    TL_SOUTHWEST = 7;
+    TL_WEST = 8;
+    TL_NORTHWEST = 9;
+    // Profile-defined touchpad regions: TL_CUSTOM_i is a profile's customRegions[i].
+    TL_CUSTOM_0 = 10;
+    TL_CUSTOM_1 = 11;
+    TL_CUSTOM_2 = 12;
+    TL_CUSTOM_3 = 13;
+    TL_CUSTOM_4 = 14;
+    TL_CUSTOM_5 = 15;
+    TL_CUSTOM_6 = 16;
+    TL_CUSTOM_7 = 17;
+    TL_CUSTOM_8 = 18;
+    TL_CUSTOM_9 = 19;
+    TL_CUSTOM_10 = 20;
+    TL_CUSTOM_11 = 21;
+    TL_CUSTOM_12 = 22;
+    TL_CUSTOM_13 = 23;
+    TL_CUSTOM_14 = 24;
+    TL_CUSTOM_15 = 25;
+    TL_CUSTOM_16 = 26;
+    TL_CUSTOM_17 = 27;
+    TL_CUSTOM_18 = 28;
+    TL_CUSTOM_19 = 29;
+    TL_CUSTOM_20 = 30;
+    TL_CUSTOM_21 = 31;
+    TL_CUSTOM_22 = 32;
+    TL_CUSTOM_23 = 33;
+    TL_CUSTOM_24 = 34;
+    TL_CUSTOM_25 = 35;
+    TL_CUSTOM_26 = 36;
+    TL_CUSTOM_27 = 37;
+    TL_CUSTOM_28 = 38;
+    TL_CUSTOM_29 = 39;
+    TL_CUSTOM_30 = 40;
+    TL_CUSTOM_31 = 41;
+    TL_CUSTOM_32 = 42;
+    TL_CUSTOM_33 = 43;
+    TL_CUSTOM_34 = 44;
+    TL_CUSTOM_35 = 45;
+    TL_CUSTOM_36 = 46;
+    TL_CUSTOM_37 = 47;
+    TL_CUSTOM_38 = 48;
+    TL_CUSTOM_39 = 49;
+    TL_CUSTOM_40 = 50;
+    TL_CUSTOM_41 = 51;
+    TL_CUSTOM_42 = 52;
+    TL_CUSTOM_43 = 53;
+    TL_CUSTOM_44 = 54;
+    TL_CUSTOM_45 = 55;
+    TL_CUSTOM_46 = 56;
+    TL_CUSTOM_47 = 57;
+    TL_CUSTOM_48 = 58;
+    TL_CUSTOM_49 = 59;
+}
+
+enum TouchpadGestureType {
+    TGT_UNSPECIFIED = 0;
+    TGT_NO_TOUCH = 1;
+    TGT_TOUCH_TRIANGLE = 2;
+    TGT_TOUCH_RECTANGLE = 3;
+    TGT_HOLD = 4;
+    TGT_SWIPE = 5;
+    TGT_TOUCH_TRIANGLE_END = 6;
+    TGT_TOUCH_RECTANGLE_END = 7;
+    TGT_SWIPE_END = 8;
+    TGT_TOUCH_CUSTOM_RECTANGLE = 9;
+    TGT_TOUCH_CUSTOM_RECTANGLE_END = 10;
+}
+
+enum BarometerGestureType {
+    BGT_UNSPECIFIED = 0;
+    BGT_NEUTRAL = 1;
+    BGT_PRESS = 2;
+    BGT_SIP = 3;
+}
+
+enum BarometerGestureSubtype {
+    BGS_UNSPECIFIED = 0;
+    BGS_SHORT = 1;
+    BGS_LONG = 2;
+}
+
+enum ImuGestureType {
+    IGT_UNSPECIFIED = 0;
+    IGT_HEAD_NO_MOVEMENT = 1;
+    IGT_HEAD_MOVEMENT = 21; // For backwards compatibility DO NOT fix this typo
+    IGT_HEAD_TILT = 3;
+    IGT_TAP = 4;
+}
+
+enum ImuGestureSubtype {
+    IGS_UNSPECIFIED = 0;
+    IGS_IMU_SUBTYPE_NONE = 1;
+    IGS_IMU_TILT_UP = 2;
+    IGS_IMU_TILT_DOWN = 3;
+    IGS_IMU_TILT_LEFT = 4;
+    IGS_IMU_TILT_RIGHT = 5;
+    IGS_IMU_TAP_SINGLE = 6;
+    IGS_IMU_TAP_DOUBLE = 7;
+    IGS_IMU_TAP_TRIPLE = 8;
+}
+
+enum GpioGestureType {
+    GGT_UNSPECIFIED = 0;
+    GGT_BUTTON = 1;
+    GGT_BUTTON_1 = 2;
+    GGT_BUTTON_2 = 3;
+    GGT_BUTTON_3 = 4;
+    GGT_BUTTON_4 = 5;
+    GGT_MAGNET_NORTH = 6;
+    GGT_MAGNET_SOUTH = 7;
+}
+
+enum GpioGestureSubtype {
+    GGS_UNSPECIFIED = 0;
+    GGS_BUTTON_QUICK_PRESS = 1;
+    GGS_BUTTON_DOUBLE_PRESS = 2;
+    GGS_BUTTON_PRESS = 3;
+    GGS_BUTTON_RELEASE = 4;
+}
+
+message FSMGesture {
+    GestureSource source = 1;
+    oneof gesture_type {
+        TouchpadGestureType touchpad_gesture_type = 2;
+        BarometerGestureType barometer_gesture_type = 3;
+        ImuGestureType imu_gesture_type = 4;
+        GpioGestureType gpio_gesture_type = 9;
+        // A gesture none of the enums above name, matched by index against a
+        // profile's custom gesture triggers (its customGestures.types).
+        uint32 custom_gesture_type = 13;
+    }
+    oneof gesture_subtype {
+        TouchpadLocation touchpad_location = 5;
+        BarometerGestureSubtype barometer_gesture_subtype = 6;
+        ImuGestureSubtype imu_gesture_subtype = 7;
+        GpioGestureSubtype gpio_gesture_subtype = 10;
+        uint32 custom_gesture_subtype = 14;
+    }
+    // Number of cycles elapsed since the start of the gesture.
+    int32 gesture_duration_cycles = 8;
+    // Replaces `source` with an index GestureSource doesn't name (10 or above,
+    // a profile's customGestures.sources).
+    optional uint32 custom_gesture_source = 12;
+}

@@ -1,0 +1,8 @@
+# Runtime
+protobuf>=4
+pyserial>=3.5
+
+# Each interface under interfaces/ has its own requirements.txt.
+
+# Regenerating the protobuf bindings (make proto)
+grpcio-tools>=1.48

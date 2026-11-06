@@ -1,0 +1,39 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
+// Copyright 2026 Augmental Technologies, Inc.. See LICENSE and NOTICE.
+
+syntax = "proto3";
+package mouthware_message;
+
+// Just enough of the device-info path to tell devices apart before injecting.
+//
+// Field numbers match the canonical mouthpad-proto, so these decode the real
+// device's replies. Every field the host does not read is simply left out:
+// protobuf skips unknown fields, so a reply carrying a full SystemConfig still
+// decodes against the one field below.
+
+enum ConfigType {
+    CONFIG_TYPE_UNSPECIFIED = 0;
+    CONFIG_TYPE_SYSTEM = 1;
+}
+
+message ConfigRead {
+    ConfigType config_type = 1;
+}
+
+message SystemConfig {
+    // Which board the firmware is running on. A hardware key and an
+    // audio-loopback adapter share a USB VID, and this is what separates them.
+    uint32 hardware_version = 5;
+}
+
+message MouthwareResponse {
+    oneof message_body {
+        SystemConfig system_config = 31;
+    }
+}
+
+message MouthpadToAppMessage {
+    oneof uplink {
+        MouthwareResponse mouthware_response = 1;
+    }
+}
