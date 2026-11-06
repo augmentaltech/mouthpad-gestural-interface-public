@@ -227,37 +227,38 @@ MouthPad profiles compared with other gesture-mapping systems, on these features
    mapping.
 4. **Menu UI**: actions include on-screen UI, such as the radial menu, the
    on-screen keyboard and dictation, run by the companion app.
-5. **UART, UDP, BLE**: actions include writing a message to a serial port, a
-   localhost UDP port, or a BLE service.
+5. **Output messages**: actions include sending a message to other software or
+   hardware, such as over a localhost UDP port, a serial port (UART) or a BLE
+   service.
 6. **Any source**: gestures can come from other input devices, including
    research hardware on a serial port that isn't a standard HID device,
    through the hardware key.
 
-| System | Text spec | Profiles | Stateful | Menu UI | UART | UDP | BLE | Any source |
-|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| **MouthPad** `.mkprofile` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| [QuadStick](https://quadstick.s3.amazonaws.com/documents/user_manual/um/configuration.htm) | ✓ | ✓ | ◐ modes | ✗ | ✗ | ✗ | ✗ | ✗ |
-| [LipSync](https://www.neilsquire.ca/the-lipsync-levels-up-the-new-lipsync-is-here/) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| [Xbox Adaptive Controller](https://www.xbox.com/accessories-app) | ✗ | ✓ 3 | ◐ profiles, shift | ✗ | ✗ | ✗ | ✗ | ◐ switches |
-| [Apple Switch Control](https://support.apple.com/en-us/119835) | ✗ | ✗ | ◐ recipes | ✓ | ✗ | ✗ | ✗ | ◐ switches, head, sounds |
-| [Android Switch Access](https://support.google.com/accessibility/android/answer/11150722) | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ◐ switches, face |
-| [Project Gameface](https://developers.googleblog.com/2023/06/project-gameface.html) | ✗ | ? | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| [OptiKey](https://github.com/Optikey/Optikey/wiki) | ✓ | ◐ keyboard files | ◐ keyboard pages | ✓ | ✗ | ✗ | ✗ | ◐ gaze, mouse, switches |
-| [AsTeRICS](https://www.asterics-foundation.org/?p=1067) | ✓ | ✓ | ? | ◐ | ? | ? | ? | ✓ |
-| [Talon Voice](https://talonvoice.com/docs) | ✓ | ◐ | ✓ | ✓ | ◐ ¹ | ◐ ¹ | ◐ ¹ | ◐ ¹ |
-| [Steam Input](https://partner.steamgames.com/doc/features/steam_controller/action_set_layers) | ✓ | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ | ◐ gamepads |
-| [BetterTouchTool](https://docs.folivora.ai/docs/actions/conditions/) | ◐ ² | ✓ | ✓ | ✓ | ◐ ¹ | ✓ OSC | ◐ ¹ | ◐ HID, MIDI |
-| [Stream Deck](https://docs.elgato.com/sdk/plugins/manifest) | ◐ ² | ✓ | ◐ folders | ◐ on its keys | ◐ ³ | ◐ ³ | ◐ ³ | ✗ |
-| [Logi Options+](https://futureisnow.logitech.com/en-us/software/logi-options-plus/actions-ring.html) | ✗ | ✓ | ✗ | ✓ | ◐ ³ | ◐ ³ | ◐ ³ | ✗ |
-| [Karabiner-Elements](https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/to/set-variable/) | ✓ | ✓ | ✓ | ✗ | ◐ ¹ | ◐ ¹ | ◐ ¹ | ✗ |
-| [Kanata](https://github.com/jtroo/kanata) | ✓ | ◐ config files | ✓ | ✗ | ◐ ¹ | ◐ ¹ | ◐ ¹ | ✗ |
-| [AntiMicroX](https://github.com/AntiMicroX/antimicrox) | ✓ | ✓ | ◐ sets | ✗ | ◐ ¹ | ◐ ¹ | ◐ ¹ | ✗ |
-| [QMK](https://docs.qmk.fm/feature_layers) / [ZMK](https://zmk.dev) | ✓ | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| [Unity Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.8/manual/ActionBindings.html) | ✓ | — ⁴ | ◐ | — ⁴ | — ⁴ | — ⁴ | — ⁴ | ◐ ⁵ |
-| [Unreal Enhanced Input](https://dev.epicgames.com/documentation/en-us/unreal-engine/enhanced-input-in-unreal-engine) | ✗ | — ⁴ | ✓ | — ⁴ | — ⁴ | — ⁴ | — ⁴ | ◐ ⁵ |
-| [OpenXR actions](https://openxr-tutorial.simul.co/linux/opengl/4-actions.html) | ✗ | — ⁴ | ◐ action sets | — ⁴ | — ⁴ | — ⁴ | — ⁴ | ◐ ⁵ |
-| [libmapper](https://www.github.com/libmapper/libmapper) | ◐ ² | ◐ sessions | ✗ | ✗ | ✗ | ◐ OSC | ✗ | ✓ |
-| [SCXML](https://www.w3.org/TR/scxml/) | ✓ | — ⁴ | ✓ | — ⁴ | — ⁴ | — ⁴ | — ⁴ | ✓ |
+| System | Text spec | Profiles | Stateful | Menu UI | Output messages (e.g. UDP, UART, BLE) | Any source |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|
+| **MouthPad** `.mkprofile` | ✓ | ✓ | ✓ | ✓ | ✓ UDP, UART, BLE | ✓ |
+| [QuadStick](https://quadstick.s3.amazonaws.com/documents/user_manual/um/configuration.htm) | ✓ | ✓ | ◐ modes | ✗ | ✗ | ✗ |
+| [LipSync](https://www.neilsquire.ca/the-lipsync-levels-up-the-new-lipsync-is-here/) | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| [Xbox Adaptive Controller](https://www.xbox.com/accessories-app) | ✗ | ✓ 3 | ◐ profiles, shift | ✗ | ✗ | ◐ switches |
+| [Apple Switch Control](https://support.apple.com/en-us/119835) | ✗ | ✗ | ◐ recipes | ✓ | ✗ | ◐ switches, head, sounds |
+| [Android Switch Access](https://support.google.com/accessibility/android/answer/11150722) | ✗ | ✗ | ✗ | ✓ | ✗ | ◐ switches, face |
+| [Project Gameface](https://developers.googleblog.com/2023/06/project-gameface.html) | ✗ | ? | ✗ | ✗ | ✗ | ✗ |
+| [OptiKey](https://github.com/Optikey/Optikey/wiki) | ✓ | ◐ keyboard files | ◐ keyboard pages | ✓ | ✗ | ◐ gaze, mouse, switches |
+| [AsTeRICS](https://www.asterics-foundation.org/?p=1067) | ✓ | ✓ | ? | ◐ | ? | ✓ |
+| [Talon Voice](https://talonvoice.com/docs) | ✓ | ◐ | ✓ | ✓ | ◐ ¹ | ◐ ¹ |
+| [Steam Input](https://partner.steamgames.com/doc/features/steam_controller/action_set_layers) | ✓ | ✓ | ✓ | ✓ | ✗ | ◐ gamepads |
+| [BetterTouchTool](https://docs.folivora.ai/docs/actions/conditions/) | ◐ ² | ✓ | ✓ | ✓ | ✓ UDP (OSC ⁶); UART, BLE ◐ ¹ | ◐ HID, MIDI |
+| [Stream Deck](https://docs.elgato.com/sdk/plugins/manifest) | ◐ ² | ✓ | ◐ folders | ◐ on its keys | ◐ ³ | ✗ |
+| [Logi Options+](https://futureisnow.logitech.com/en-us/software/logi-options-plus/actions-ring.html) | ✗ | ✓ | ✗ | ✓ | ◐ ³ | ✗ |
+| [Karabiner-Elements](https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/to/set-variable/) | ✓ | ✓ | ✓ | ✗ | ◐ ¹ | ✗ |
+| [Kanata](https://github.com/jtroo/kanata) | ✓ | ◐ config files | ✓ | ✗ | ◐ ¹ | ✗ |
+| [AntiMicroX](https://github.com/AntiMicroX/antimicrox) | ✓ | ✓ | ◐ sets | ✗ | ◐ ¹ | ✗ |
+| [QMK](https://docs.qmk.fm/feature_layers) / [ZMK](https://zmk.dev) | ✓ | ✗ | ✓ | ✗ | ✗ | ✗ |
+| [Unity Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.8/manual/ActionBindings.html) | ✓ | — ⁴ | ◐ | — ⁴ | — ⁴ | ◐ ⁵ |
+| [Unreal Enhanced Input](https://dev.epicgames.com/documentation/en-us/unreal-engine/enhanced-input-in-unreal-engine) | ✗ | — ⁴ | ✓ | — ⁴ | — ⁴ | ◐ ⁵ |
+| [OpenXR actions](https://openxr-tutorial.simul.co/linux/opengl/4-actions.html) | ✗ | — ⁴ | ◐ action sets | — ⁴ | — ⁴ | ◐ ⁵ |
+| [libmapper](https://www.github.com/libmapper/libmapper) | ◐ ² | ◐ sessions | ✗ | ✗ | ◐ UDP (OSC ⁶) | ✓ |
+| [SCXML](https://www.w3.org/TR/scxml/) | ✓ | — ⁴ | ✓ | — ⁴ | — ⁴ | ✓ |
 
 ✓ built in; ◐ partly; ✗ no; — not applicable; ? not confirmed.
 
@@ -266,6 +267,8 @@ MouthPad profiles compared with other gesture-mapping systems, on these features
 3. Through third-party plugins.
 4. A framework or format: the application supplies the actions.
 5. Devices the engine or runtime supports, or ones added in code.
+6. Open Sound Control: a message format from music and media software (TouchOSC,
+   Max/MSP, lighting consoles), usually sent over UDP.
 
 ## Protocol
 
