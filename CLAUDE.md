@@ -288,7 +288,8 @@ unknown. An event triggers on a custom gesture like this:
 ```
 - **Sources**: indices must be at least 10 and must not be a built-in `GestureSource` value.
   Source names share the `source` field with the built-ins, so they can't reuse one (`gsImu`).
-- **Types**: indices 0–255. **Subtypes**: indices 0–127. These are the sizes the firmware stores.
+- **Types**: indices 1–255. **Subtypes**: indices 1–127. These are the sizes the firmware stores; index 0 is reserved, since the firmware reads it as "any".
+  To match any type or subtype, leave `gestureType` or `gestureSubtype` out.
 - `gestureType` and `gestureSubtype` are optional; one left out matches any type or subtype
   from that source.
 - They go only with a custom source, and a custom source takes only them: none of the
@@ -316,7 +317,7 @@ unknown. An event triggers on a custom gesture like this:
 11. **Max 50 custom regions**; `xmin <= xmax` and `ymin <= ymax`.
 12. **Known gesture names**: every event's `source`, type and subtype must be a built-in proto name or, for a custom gesture, one defined in `customGestures`.
 13. **Custom gestures are separate**: `gestureType` / `gestureSubtype` only with a custom source, which takes no per-sensor fields; `customGestures` names have no leading `.`.
-14. **Custom gesture indices in range**: sources at least 10, not built-in and not a built-in name; types 0–255; subtypes 0–127.
+14. **Custom gesture indices in range**: sources at least 10, not built-in and not a built-in name; types 1–255; subtypes 1–127.
 15. **Version**: `version`, if present, is at least 1.
 16. **Defined states**: every `nextStateIndex` names a state in `states` (with or without a leading `.`), a built-in state or an app-generated state; every `headControlModes` / `tongueControlModes` entry names a state in `states`.
 
